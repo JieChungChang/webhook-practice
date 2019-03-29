@@ -1,14 +1,9 @@
-WEB_PATH='/root/tools/'$1
-WEB_USER='root'
-WEB_USERGROUP='root'
+WEB_PATH='/home/ec2-user/Web-Backend-2019-Spring/students/JieChung/stylish'
 
 echo "Start deployment"
 cd $WEB_PATH
 echo "pulling source code..."
-git reset --hard origin/master
-git clean -f
-git pull
-git checkout master
+git pull origin master 
 echo "changing permissions..."
-chown -R $WEB_USER:$WEB_USERGROUP $WEB_PATH
+sudo node index.js
 echo "Finished."
