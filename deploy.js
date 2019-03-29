@@ -56,12 +56,13 @@ handler.on('push', function (event) {
   console.log('Received a push event for %s to %s',
     event.payload.repository.name,
     event.payload.ref);
-  console.log(event.payload);
+  console.log(event.payload.commits.message);
 
   run_cmd('sh', ['./deploy.sh'], function(text){ console.log(text) });
 
   let commitTime = Date.now();
   let insertQuery = "INSERT INTO test1(commit_time) VALUES("+commitTime+")";
+  console.log(insertQuery);
   mysqlCon.query(insertQuery, (err, result) => {
     if (err) throw err;
     console.log("Insert successfully!")
