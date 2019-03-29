@@ -56,17 +56,15 @@ handler.on('push', function (event) {
   console.log('Received a push event for %s to %s',
     event.payload.repository.name,
     event.payload.ref);
-  console.log(event.payload.commits[0].message);
   let commitMsg = event.payload.commits[0].message; 
+  let commitTime = event.payload.commits[0].timestamp;
 
-  run_cmd('sh', ['./deploy.sh'], function(text){ console.log(text) });
-
-  let commitTime = Date.now();
   let insertQuery = "INSERT INTO test1(commit_time, commit_msg) VALUES("+commitTime+", '"+commitMsg+"')";
   console.log(insertQuery);
   mysqlCon.query(insertQuery, (err, result) => {
     if (err) throw err;
-    console.log("Insert successfully!")
+    console.log("Insert successfully!");
+    run_cmd('sh', ['./deploy.sh'], function(text){ console.log(text) });
   })
 })
 
@@ -86,7 +84,7 @@ app.get('/record', (req, res) => {
   mysqlCon.query(query, (err, result) => {
     if (err) throw err;
     let total = {};
-    total.title = result;
+    total.commitlog = result;
     res.send(total);
   })
 });

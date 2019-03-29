@@ -4,7 +4,7 @@
 	<title>Webhook Test</title>
 </head>
 <body>
-	<h1>Hello!</h1>
+	<h1>Hi Programmmer!</h1>
 	<div id="result"></div>
 	<script type="text/javascript">
 	let config = {
@@ -19,6 +19,17 @@
 	      	}
 	      	response.json().then(function(data) {
 	      		console.log(data);
+
+	      		let resultDiv = document.getElementById('result');
+	      		for (let i=0; i<data.commitlog.length) {
+	      			let commitLog = document.createElement("p");
+	      			let timeText = document.createTextNode("Time:" + data.commitlog[i].commit_time);
+	      			let msgText = document.createTextNode("Message:" + data.commitlog[i].commit_msg);
+	      			commitLog.appendChild(timeText);
+	      			commitLog.appendChild(msgText);
+	      			resultDiv.appendChild(commitLog);
+	      		}
+				
 	      	});
 	    }
 	)
