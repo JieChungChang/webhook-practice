@@ -21,7 +21,7 @@
 	      		console.log(data);
 
 	      		let resultDiv = document.getElementById('result');
-	      		for (let i=0; i<data.commitlog.length) {
+	      		for (let i=0; i<data.commitlog.length; i++){
 	      			let commitLog = document.createElement("p");
 	      			let timeText = document.createTextNode("Time:" + data.commitlog[i].commit_time);
 	      			let msgText = document.createTextNode("Message:" + data.commitlog[i].commit_msg);
