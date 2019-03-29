@@ -22,14 +22,19 @@
 
 	      		let resultDiv = document.getElementById('result');
 	      		for (let i=0; i<data.commitlog.length; i++){
+	      			let commitAuth = document.createElement("p");
+	      			let authorText = document.createTextNode("Author:" + data.commitlog[i].commit_author);
+	      			commicommitAuthtLog.appendChild(authorText);
+	      			resultDiv.appendChild(commitAuth);
+
 	      			let commitLog = document.createElement("p");
 	      			let timeText = document.createTextNode("Time:" + data.commitlog[i].commit_time);
 	      			let msgText = document.createTextNode("Message:" + data.commitlog[i].commit_msg);
 	      			commitLog.appendChild(timeText);
 	      			commitLog.appendChild(msgText);
 	      			resultDiv.appendChild(commitLog);
-	      		}
-				
+
+	      		}	
 	      	});
 	    }
 	)

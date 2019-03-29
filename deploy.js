@@ -58,8 +58,9 @@ handler.on('push', function (event) {
     event.payload.ref);
   let commitMsg = event.payload.commits[0].message; 
   let commitTime = event.payload.commits[0].timestamp;
+  let commitAuth = event.payload.commits[0].author.name;
 
-  let insertQuery = "INSERT INTO test1(commit_time, commit_msg) VALUES('"+commitTime+"', '"+commitMsg+"')";
+  let insertQuery = "INSERT INTO test1(commit_time, commit_msg, commit_author) VALUES('"+commitTime+"', '"+commitMsg+"', '"+commitAuth+"')";
   console.log(insertQuery);
   mysqlCon.query(insertQuery, (err, result) => {
     if (err) throw err;
